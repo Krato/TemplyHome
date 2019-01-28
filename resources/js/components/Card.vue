@@ -158,7 +158,7 @@ export default {
 
     mounted() {
         Nova.request().get('/infinety-es/temply-home/check-status').then(response => {
-            this.step = 4//response.data.step;
+            this.step = response.data.step;
         })
     }
 }
