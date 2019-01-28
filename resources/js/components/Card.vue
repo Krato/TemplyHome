@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-center items-centers">
+    <div class="flex justify-center items-centers" v-cloak>
 
         <div class="flex justify-center flex-wrap w-full max-w-xl" v-if="completed">
             <h3 class="w-full text-center">{{ __('Activating website') }}</h3>
@@ -75,13 +75,9 @@
                         <p class="text-grey-dark text-xl mt-2 mb-4">
                             {{ __('Nobody likes an empty website, add a new page.') }}
                         </p>
-
-                        <router-link class="btn btn-default btn-primary"
-                            :to="{ name: 'temply-pages.pages'}"
-                        >
-                        {{ __('Edit pages') }}
-                        </router-link>
-                        <!-- <a href="/nova/temply-theme-manager" class=""></a> -->
+                        <button class="btn btn-default btn-primary" @click="pagesVisited">
+                            {{ __('Edit pages') }}
+                        </button>
                     </template>
                 </step>
             </div>
@@ -132,7 +128,7 @@ export default {
     },
 
     data: () => ({
-        step: 1,
+        step: 0,
         completed: false
     }),
 
@@ -143,8 +139,6 @@ export default {
 
     methods: {
         activateWebsite() {
-            console.log('activar')
-
             Nova.request().post('/infinety-es/temply-home/activate').then(() => {
                 this.completed = true
 
@@ -152,6 +146,12 @@ export default {
                     location.reload()
                 }, 3000);
                 
+            })
+        },
+
+        pagesVisited() {
+            Nova.request().post('/infinety-es/temply-home/pages-visited').then(() => {
+                this.$router.push({ name: 'temply-pages.pages' })
             })
         }
     },

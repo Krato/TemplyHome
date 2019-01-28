@@ -20,9 +20,9 @@ class TemplyCardHomeController extends Controller
     {
         $step = 1;
         $theme = setting('theme', false);
-        $pallete = setting('pallete', false);
+        $palette = setting('palette', false);
 
-        if ($theme != false && $pallete != false) {
+        if ($theme != false && $palette != false) {
             $step = 2;
         }
 
@@ -35,8 +35,23 @@ class TemplyCardHomeController extends Controller
             $step = 3;
         }
 
+        $pagesVisited = setting('step', false);
+        if ($pagesVisited == 4) {
+            $step = 4;
+        }
+
         return response()->json([
             'step' => $step,
+        ]);
+    }
+
+    public function pagesVisited()
+    {
+        setting(['step' => 4]);
+        setting()->save();
+
+        return response()->json([
+            'success' => true,
         ]);
     }
 

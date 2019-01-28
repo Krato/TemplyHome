@@ -15,4 +15,5 @@ use Infinety\TemplyHome\Http\Controllers\TemplyCardHomeController;
  */
 
 Route::get('/check-status', TemplyCardHomeController::class.'@checkStatus');
+Route::post('/pages-visited', TemplyCardHomeController::class.'@pagesVisited');
 Route::post('/activate', TemplyCardHomeController::class.'@activate');
