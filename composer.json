@@ -1,0 +1,30 @@
+{
+    "name": "infinety-es/temply-home",
+    "description": "A Laravel Nova card.",
+    "keywords": [
+        "laravel",
+        "nova"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.1.0",
+        "akaunting/setting": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Infinety\\TemplyHome\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Infinety\\TemplyHome\\CardServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
